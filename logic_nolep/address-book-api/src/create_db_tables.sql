@@ -1,0 +1,20 @@
+CREATE DATABASE address_book_api;
+
+CREATE TABLE "Contact" (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    "phoneNumber" VARCHAR(50) UNIQUE NOT NULL,
+    company VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE "Groups" (
+    id SERIAL PRIMARY KEY,
+    "groupName" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "GroupContact" (
+    id SERIAL PRIMARY KEY,
+    "ContactId" INTEGER REFERENCES "Contact"(id) ON DELETE CASCADE,
+    "GroupId" INTEGER REFERENCES "Groups"(id) ON DELETE CASCADE
+);
